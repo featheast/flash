@@ -12,6 +12,7 @@ package org.flowplayer.sharing {
     import org.flowplayer.util.Log;
     import org.flowplayer.util.URLUtil;
     import org.flowplayer.view.Flowplayer;
+    import flash.external.ExternalInterface;
 
     public class AbstractCommand {
         private var _player:Flowplayer;
@@ -36,7 +37,17 @@ package org.flowplayer.sharing {
         protected function get pageUrl():String {
         	return player.currentClip.getCustomProperty("pageUrl")
         	? String(player.currentClip.getCustomProperty("pageUrl"))
-        	: URLUtil.pageUrl;
+        	: retrievePageUrl();
+        }
+
+        private function retrievePageUrl():String {
+		if (!ExternalInterface.available) return null;
+		var isInIframe:Boolean = ExternalInterface.call("function(){ return (parent !== window); }");
+		if (isInIframe) {
+			return ExternalInterface.call("document.referrer.toString");
+		} else {
+			return URLUtil.pageUrl;
+		}
         }
 
         protected function formatString(original:String, ...args):String {
