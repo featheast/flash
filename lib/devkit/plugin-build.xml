@@ -13,7 +13,7 @@
 	<property name="lib-dir" value="lib" />
 	<property name="flex-libs-path" value="${flexlibsdir}" />
 	<property name="flowplayer-js-version-info" value="3.1.4" />
-	<property name="src-flowplayer" value="../core" />
+	<property name="src-flowplayer" value="../../core" />
     <property name="plugin-swc" value="${basename}.swc" />
     <property name="plugin-swc-versioned" value="${basename}-${version}.swc" />
 
@@ -303,6 +303,7 @@
 	
     
     <target name="write-zip-url">
+        <echo message="writing to ${url-file}" />
         <echo file="${url-file}" append="true">&#60;a href="http://flowplayer-releases.s3.amazonaws.com/${basename}/${basename}.zip"&#62;${basename}.zip&#60;/a&#62; &#60;br /&#62;
     </echo>
     </target>
