@@ -54,7 +54,7 @@ package org.flowplayer.sharing {
 	public function getMetaCDNEmbedCode():String {
 	    var embedUrl:String = URLUtil.pageUrl; 
             var code:String =
-                '<iframe width="60" height="360" src="' + embedUrl  + '" frameborder="0"></iframe>';
+                '<iframe width="640" height="360" src="' + embedUrl  + '" frameborder="0"></iframe>';
             return code;
         }
     }
