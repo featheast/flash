@@ -28,7 +28,7 @@ package org.flowplayer.sharing {
         }
 
         override protected function process():void {
-            var request:URLRequest = new URLRequest(formatString("mailto:{0}?subject={1}&body={2}", "", encodeURI(_subject), encodeURI(formatString(_template, _subject, pageUrl))));            
+            var request:URLRequest = new URLRequest(formatString("mailto:{0}?subject={1}&body={2}", "", _subject, formatString(_template, _subject, parentPageUrl)));            
             navigateToURL(request, "_self");
         }
 

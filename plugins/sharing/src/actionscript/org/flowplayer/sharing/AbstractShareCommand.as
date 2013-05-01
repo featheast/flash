@@ -30,7 +30,7 @@ package org.flowplayer.sharing {
         }
 
         override protected function process():void {
-            var url:String = formatString(serviceUrl, encodeURIComponent(_description), pageUrl);
+            var url:String = formatString(serviceUrl, encodeURIComponent(_description), parentPageUrl);
             player.pause();
             launchURL(url, popupDimensions);
         }

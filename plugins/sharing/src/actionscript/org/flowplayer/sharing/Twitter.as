@@ -26,7 +26,7 @@ package org.flowplayer.sharing {
         }
 
         override protected function get serviceUrl():String {
-            return formatString(TWITTER_URL, formatString(_tweet, escape(_subject), pageUrl));
+            return formatString(TWITTER_URL, formatString(_tweet, escape(_subject), parentPageUrl));
         }
 	
 	public function get tweet():String
