@@ -37,10 +37,16 @@ package org.flowplayer.sharing {
         protected function get pageUrl():String {
         	return player.currentClip.getCustomProperty("pageUrl")
         	? String(player.currentClip.getCustomProperty("pageUrl"))
-        	: retrievePageUrl();
+        	: URLUtil.pageUrl;
         }
 
-        private function retrievePageUrl():String {
+	protected function get parentPageUrl():String {
+		return player.currentClip.getCustomProperty("pageUrl")
+		? String(player.currentClip.getCustomProperty("pageUrl"))
+		: retrieveParentPageUrl();
+	}
+
+        private function retrieveParentPageUrl():String {
 		if (!ExternalInterface.available) return null;
 		var isInIframe:Boolean = ExternalInterface.call("function(){ return (parent !== window); }");
 		if (isInIframe) {

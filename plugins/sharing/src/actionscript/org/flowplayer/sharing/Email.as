@@ -20,7 +20,7 @@ package org.flowplayer.sharing {
 
         private var _subject:String = "Video you might be interested in";
         private var _message:String = "";
-        private var _template:String = "{0} \n\n Video Link: <a href=\"{1}\">{2}</a>";
+        private var _template:String = "{0} {1}";
 
 
         public function Email(player:Flowplayer) {
@@ -28,7 +28,7 @@ package org.flowplayer.sharing {
         }
 
         override protected function process():void {
-            var request:URLRequest = new URLRequest(formatString("mailto:{0}?subject={1}&body={2}", "", encodeURI(_subject), encodeURI(formatString(_template, _message, pageUrl, pageUrl))));            
+            var request:URLRequest = new URLRequest(formatString("mailto:{0}?subject={1}&body={2}", "", encodeURI(_subject), encodeURI(formatString(_template, _subject, pageUrl))));            
             navigateToURL(request, "_self");
         }
 

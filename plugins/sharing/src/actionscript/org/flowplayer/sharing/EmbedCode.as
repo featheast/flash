@@ -17,6 +17,8 @@ package org.flowplayer.sharing {
     import org.flowplayer.view.Flowplayer;
     import org.flowplayer.viralvideos.PlayerEmbed;
     import org.flowplayer.viralvideos.config.EmbedConfig;
+    import org.flowplayer.util.URLUtil;
+
 
     public class EmbedCode extends AbstractCommand {
         private var _embed:PlayerEmbed;
@@ -30,7 +32,7 @@ package org.flowplayer.sharing {
         }
 
         override protected function process():void {
-            System.setClipboard(_embed.getEmbedCode(true));
+            System.setClipboard(getMetaCDNEmbedCode());
             var notification:Notification = Notification.createTextNotification(player, _notification);
             notification.setSize(Math.min(player.panel.width - 20, 240), 50);
             notification.show().autoHide();
@@ -46,6 +48,14 @@ package org.flowplayer.sharing {
 
         public function get notification():String {
             return _notification;
+        }
+    
+
+	public function getMetaCDNEmbedCode():String {
+	    var embedUrl:String = URLUtil.pageUrl; 
+            var code:String =
+                '<iframe width="60" height="360" src="' + embedUrl  + '" frameborder="0"></iframe>';
+            return code;
         }
     }
 }

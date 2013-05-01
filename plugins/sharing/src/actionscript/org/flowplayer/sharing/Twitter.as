@@ -12,7 +12,10 @@ package org.flowplayer.sharing {
     import org.flowplayer.view.Flowplayer;
 
     public class Twitter extends AbstractShareCommand {
-        private static const TWITTER_URL:String = "http://twitter.com/intent/tweet?text={0}&url={1}";
+        private static const TWITTER_URL:String = "http://twitter.com/intent/tweet?text={0}";
+
+	private var _tweet:String = "{0} {1}";
+	private var _subject:String = "";
 
         public function Twitter(player:Flowplayer) {
             super(player);
@@ -23,8 +26,29 @@ package org.flowplayer.sharing {
         }
 
         override protected function get serviceUrl():String {
-            return TWITTER_URL;
+            return formatString(TWITTER_URL, escape(formatString(_tweet, escape(_subject), pageUrl)));
         }
+	
+	public function get tweet():String
+	{
+		return _tweet;
+	}
 
+	public function set tweet(value:String):void {
+		_tweet = value;
+	}
+
+	[Value]
+	public function get subject():String
+	{
+		return _subject;
+	}
+
+	public function set subject(value:String):void 
+	{
+		_subject = value;
+	}
+	
+	
     }
 }
